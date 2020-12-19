@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "vk-io": "^4.1.2"
+    "traverse": "^0.6.6",
+    "vk-io": "^3.2.0"
   }
 }

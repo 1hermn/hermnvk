@@ -1,22 +1,44 @@
-const {
-  VK
-} = require('vk-io');
-const {
-  HearManager
-} = require('@vk-io/hear');
+const VK = require('vk-io');
+var traverse = require('traverse');
+//const { HearManager } = require('@vk-io/hear');
 const config = require('./config.json')
 
-const vk = new VK({
-  token: process.env.TOKEN || config.token
+const vk = new VK
+vk.setToken(process.env.TOKEN || config.token)
+vk.longpoll.start()
+.then(() => {
+  console.log('Long Poll started');
 });
 /*
 const hearManager = new HearManager();
 
 vk.updates.on('message_new', hearManager.middleware);*/
 
+var new_msg = '';
+var i = 0;
+//добавить выбор.
 
-vk.updates.on('message_new', async(context, next) => {
+vk.longpoll.on('message', async (message) => {
+	if(message.text == '.start'){
+		await message.send(`
+			Бот умеет получать все вложенные фотографии в сообщении.
+			\nПерешлите сообщение с командой .getphoto
+			\nПока что других функций нет.
+			`)
+	}
+  if(message.text == '.getphoto') {
+  message.send("Начанию разбирать вложенные фотографии")
+  if(message.flags[1] != 'outbox'){
+  var msg = await vk.api.messages.getById({message_ids: message.id})
+  traverse(msg).forEach(x => {
+  	if(x.photo_1280 != undefined) {
+  		//message.send(x.photo_1280)
+  		//new_msg = new_msg + `${i}) ` + x.photo_1280 + "\n";
+  		 message.send(`${i}) ` + x.photo_1280)
+  		i++
+  	}
+  })
+}
+}
 
- })
-
-  vk.updates.start().catch(console.error);
+});
