@@ -21,7 +21,7 @@ var i = 0;
 vk.longpoll.on('message', async (message) => {
 	if(message.text == '.start'){
 		await message.send(`
-			Circle CI, ты работаешь?
+			Circle CI, ты работаешь? Видимо нет..
 			\nСвершилось! Бот запущен на сервере с автодеплоем с github'a!!!
 			\nБот умеет получать все вложенные фотографии в сообщении.
 			\nПерешлите сообщение с командой .getphoto
