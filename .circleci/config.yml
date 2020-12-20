@@ -5,3 +5,6 @@ workflows:
   node-tests:
     jobs:
       - node/test
+      - add_ssh_keys:
+          fingerprints:
+            - "81:b5:fb:cc:4d:eb:7c:de:3c:b4:89:18:7b:0b:c2:1a" 
