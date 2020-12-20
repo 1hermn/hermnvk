@@ -1,10 +1,10 @@
 const VK = require('vk-io');
 var traverse = require('traverse');
 //const { HearManager } = require('@vk-io/hear');
-const config = require('./config.json')
+//const config = require('./config.json')
 
 const vk = new VK
-vk.setToken(process.env.TOKEN || config.token)
+vk.setToken(process.env.TOKEN)
 vk.longpoll.start()
 .then(() => {
   console.log('Long Poll started');
@@ -33,8 +33,8 @@ vk.longpoll.on('message', async (message) => {
   traverse(msg).forEach(x => {
   	if(x.photo_1280 != undefined) {
   		//message.send(x.photo_1280)
-  		//new_msg = new_msg + `${i}) ` + x.photo_1280 + "\n";
-  		 message.send(`${i}) ` + x.photo_1280)
+  		//new_msg = newmsg + `${i}) ` + x.photo_1280 + "\n";
+  		message.send(`${i}) ` + x.photo_1280)
   		i++
   	}
   })
