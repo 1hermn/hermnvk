@@ -47,9 +47,6 @@ vk.longpoll.on('message', async (message) => {
 	}
 	if(message.text.startsWith('.newtest')){
 		var args = message.text.split(' ');
-		for(var i = 1; i < args.length; ++i){
-			message.send(args[i])
-		}
 	}
 
 });
