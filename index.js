@@ -12,6 +12,7 @@ var new_msg = '';
 var i = 0;
 
 vk.longpoll.on('message', async (message) => {
+	//TODO отдельным файлом
 	if(message.text == '.start'){
 		await message.send(`
 			\nБот умеет получать все вложенные фотографии в сообщении.
@@ -20,6 +21,8 @@ vk.longpoll.on('message', async (message) => {
 		\nНаписать создателю [id188241464|Кто-то]
 			`)
 	}
+	//разбор фотографий
+	//TODO отдельным файлом
 	if(message.text == '.getphoto') {
 		message.send("Начанию разбирать вложенные фотографии")
 		if(message.flags[1] != 'outbox'){
@@ -33,6 +36,12 @@ vk.longpoll.on('message', async (message) => {
 			}
 		})
 		i = 0;
+		}
+	}
+	if(message.text.startWith('.newtest')){
+		var args = message.text.split('r:');
+		for(var i = 0; i < args.length; ++i){
+			message.send(args[i])
 		}
 	}
 
