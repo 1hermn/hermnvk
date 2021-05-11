@@ -5,7 +5,7 @@ const vk = new VK
 vk.setToken(process.env.TOKEN)
 vk.longpoll.start()
 .then(() => {
-  console.log('Long Poll started');
+  console.log('Start!');
 });
 
 var new_msg = '';
