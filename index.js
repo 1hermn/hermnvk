@@ -12,6 +12,7 @@ var new_msg = '';
 var i = 0;
 
 vk.longpoll.on('message', async (message) => {
+	if(!message.isUser) return;
 	//TODO отдельным файлом
 	if(message.text == '.start'){
 		await message.send(`
