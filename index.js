@@ -38,7 +38,7 @@ vk.longpoll.on('message', async (message) => {
 		i = 0;
 		}
 	}
-	if(message.text.startWith('.newtest')){
+	if(message.text.startsWith('.newtest')){
 		var args = message.text.split('r:');
 		for(var i = 0; i < args.length; ++i){
 			message.send(args[i])
